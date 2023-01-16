@@ -46,9 +46,23 @@ export default {
         </label>
         <input type="text" id="use-searchbar">
         <button>Search</button>
-        <pre>
-            {{ store.movies }}
-        </pre>
+        <ul>
+            <li v-for="movieElement in store.movies">
+                <h3>
+                    {{ movieElement.title }}
+                </h3>
+
+                <h5>
+                    {{ movieElement.original_title }}
+                </h5>
+
+                <p>
+                    Language: {{ movieElement.original_language }}
+                    rating:{{ movieElement.vote_average }} stars
+                </p>
+
+            </li>
+        </ul>
     </header>
 </template>
 
