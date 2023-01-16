@@ -10,7 +10,8 @@ export default {
         return{
             store,
             apiKey:'77e03a919accfe25ba10020264bae0f0',
-            apiUri: 'https://api.themoviedb.org/3/search/movie'
+            apiUri: 'https://api.themoviedb.org/3/search/movie',
+            apiSeriesUri: 'https://api.themoviedb.org/3/search/tv',
         }
     },
 
@@ -30,11 +31,27 @@ export default {
             .catch(function(error){
                 console.warn(error)
             });
+
+              //Chiamata per le serie tv
+            axios.get(this.apiSeriesUri, {
+                params: {
+                    api_key: this.personalKey,
+                    query: queryInput,
+                }
+            })
+                .then((response) => {
+                    this.store.series = (response.data.results);
+                    console.log(response.data.results)
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
         }
     },
 
     created(){
     },
+    
 }
 </script>
 
