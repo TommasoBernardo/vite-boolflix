@@ -1,4 +1,5 @@
 <script>
+import { store } from './store.js'
 import ComponentsHeader from './components/ComponentsHeader.vue'
 import ComponentsMain from './components/ComponentsMain.vue'
 
@@ -7,6 +8,11 @@ export default{
   components : {
     ComponentsHeader,
     ComponentsMain
+  },
+  data(){
+    return{
+      store,
+    }
   }
 }
 </script>

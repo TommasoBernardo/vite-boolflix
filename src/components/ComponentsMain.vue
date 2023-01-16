@@ -1,13 +1,21 @@
+
+<script>
+export default {
+    name: 'ComponentsMain',
+    data() {
+        return {
+            store,
+        }
+    },
+}
+</script>
+
 <template lang="">
     <div>
         
     </div>
 </template>
-<script>
-export default {
-    name: 'ComponentsMain'
-}
-</script>
-<style lang="">
-    
+
+<style lang="scss">
+
 </style>
