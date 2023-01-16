@@ -57,6 +57,7 @@ export default {
 
                 <p>
                     Language: {{ movieElement.original_language }}
+                    <br>
                     rating:{{ movieElement.vote_average }} stars
                 </p>
 
