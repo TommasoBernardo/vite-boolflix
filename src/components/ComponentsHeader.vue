@@ -17,6 +17,18 @@ export default {
     methods: {
         getMovies(){
             //chiamata API
+            axios.get(this.apiUri, {
+                params : {
+                    'api_key' : this.apiKey,
+                    query : 'Witcher'
+                }
+            })
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch(function(error){
+                console.warn(error)
+            });
         }
     },
 
