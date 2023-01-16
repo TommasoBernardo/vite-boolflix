@@ -23,7 +23,7 @@ export default {
                     query : 'Witcher'
                 }
             })
-            .then(function (response) {
+            .then( (response) => {
                 console.log(response.data.results)
                 this.store.movies = response.data.results;
             })
@@ -46,6 +46,9 @@ export default {
         </label>
         <input type="text" id="use-searchbar">
         <button>Search</button>
+        <pre>
+            {{ store.movies }}
+        </pre>
     </header>
 </template>
 
