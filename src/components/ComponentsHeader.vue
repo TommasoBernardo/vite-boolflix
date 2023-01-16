@@ -24,7 +24,8 @@ export default {
                 }
             })
             .then(function (response) {
-                console.log(response)
+                console.log(response.data.results)
+                this.store.movies = response.data.results;
             })
             .catch(function(error){
                 console.warn(error)
