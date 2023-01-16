@@ -15,12 +15,12 @@ export default {
     },
 
     methods: {
-        getMovies(){
+        getMovies(searchQuery){
             //chiamata API
             axios.get(this.apiUri, {
                 params : {
                     'api_key' : this.apiKey,
-                    query : 'Witcher'
+                    query : searchQuery
                 }
             })
             .then( (response) => {
@@ -34,7 +34,6 @@ export default {
     },
 
     created(){
-        this.getMovies();
     },
 }
 </script>
@@ -44,8 +43,8 @@ export default {
         <label for="use-searchbar">
             insert your query:
         </label>
-        <input type="text" id="use-searchbar">
-        <button>Search</button>
+        <input type="text" id="use-searchbar" v-model="store.searchText">
+        <button @click="getMovies(store.searchText)">Search</button>
         <ul>
             <li v-for="movieElement in store.movies">
                 <h3>
