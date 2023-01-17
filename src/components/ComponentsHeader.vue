@@ -11,7 +11,7 @@ export default {
         return{
             store,
             apiKey:'77e03a919accfe25ba10020264bae0f0',
-            apiUri: 'https://api.themoviedb.org/3/search/movie',
+            apiUri: 'https://api.themoviedb.org/3/search/',
             flags: ['en', 'es', 'it', 'fr', 'ol', 'zh'],
         }
     },
@@ -52,7 +52,7 @@ export default {
     },
 
     computed:{
-        movieseAndSeries(){
+        moviesAndSeries(){
             return [...this.store.movies, ...this.store.series];
         }
     },
@@ -66,9 +66,9 @@ export default {
             insert your query:
         </label>
         <input type="text" id="use-searchbar" v-model="store.searchText">
-        <button @click="getMoviesAndSeriesTv (store.searchText)">Search</button>
+        <button @click="getMoviesAndSeriesTv(store.searchText)">Search</button>
         <ul>
-            <li v-for="movieElement in movieseAndSeries ">
+            <li v-for="movieElement in moviesAndSeries ">
                 <h3>
                     {{ movieElement.title ? movieElement.title : movieElement.name }} 
                 </h3>
