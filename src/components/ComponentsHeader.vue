@@ -17,9 +17,9 @@ export default {
     },
 
     methods: {
-        getMovies(searchQuery){
+        getMoviesSeries(apiSearch, searchQuery){
             //chiamata API
-            axios.get(this.apiUri, {
+            axios.get(this.apiUri + apiSearch , {
                 params : {
                     'api_key' : this.apiKey,
                     query : searchQuery
@@ -27,11 +27,21 @@ export default {
             })
             .then( (response) => {
                 console.log(response.data.results)
-                this.store.movies = response.data.results;
+                console.log(response.data.results)
+                if(apiSearch === 'movie'){
+                    this.store.movies = response.data.results
+                }else{
+                    this.store.series = response.data.results
+                }
             })
             .catch(function(error){
                 console.warn(error)
             });
+        },
+
+        getMoviesAndSeriesTv(searchQuery){
+            this.getMoviesSeries('movie', searchQuery)
+            this.getMoviesSeries('tv', searchQuery)
         },
         getImagePath : function(imgPath){
             return new URL (`../assets/img/${imgPath}.webp`, import.meta.url).href
@@ -39,6 +49,12 @@ export default {
     },
 
     created(){
+    },
+
+    computed:{
+        movieseAndSeries(){
+            return [...this.store.movies, ...this.store.series];
+        }
     },
     
 }
@@ -50,15 +66,15 @@ export default {
             insert your query:
         </label>
         <input type="text" id="use-searchbar" v-model="store.searchText">
-        <button @click="getMovies(store.searchText)">Search</button>
+        <button @click="getMoviesAndSeriesTv (store.searchText)">Search</button>
         <ul>
-            <li v-for="movieElement in store.movies">
+            <li v-for="movieElement in movieseAndSeries ">
                 <h3>
-                    {{ movieElement.title }} 
+                    {{ movieElement.title ? movieElement.title : movieElement.name }} 
                 </h3>
 
                 <h5>
-                    {{ movieElement.original_title }}
+                    {{ movieElement.original_title ? movieElement.original_title : movieElement.original_name }}
                 </h5>
 
                 <p>
