@@ -81,6 +81,6 @@ export default {
     }
 
     img{
-        width: 12px;
+        width: 20px;
     }
 </style>
