@@ -56,8 +56,9 @@ export default {
             return [...this.store.movies, ...this.store.series];
         }
     },
-    
+
 }
+
 </script>
 
 <template>
@@ -78,14 +79,20 @@ export default {
                 </h5>
 
                 <p>
-                    Language: <img v-if="flags.includes(movieElement.original_language)" :src="getImagePath(movieElement.original_language)" alt="State">
+                    Language: <img class="my-dimension" v-if="flags.includes(movieElement.original_language)" :src="getImagePath(movieElement.original_language)" alt="State">
                     <span v-else class="languages">
                         {{ movieElement.original_language }}
                     </span>
                     <br>
-                    rating:{{ movieElement.vote_average }} stars
-                </p>
+                    <span>
+                Rating: <i v-for="star in 5" :key="star"
+                        :class="(star < movieElement.vote_average / 2) ? 'fas fa-star' : 'far fa-star'"></i>
+            </span>
+                </p>    
 
+                <p>
+                    <img :src="`https://image.tmdb.org/t/p/w342${movieElement.poster_path}`" alt="">
+                </p>
             </li>
         </ul>
     </header>
@@ -96,7 +103,7 @@ export default {
         margin-left: 1rem;
     }
 
-    img{
+    .my-dimension{
         width: 20px;
     }
 </style>
