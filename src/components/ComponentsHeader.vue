@@ -12,7 +12,7 @@ export default {
             store,
             apiKey:'77e03a919accfe25ba10020264bae0f0',
             apiUri: 'https://api.themoviedb.org/3/search/movie',
-            apiSeriesUri: 'https://api.themoviedb.org/3/search/tv',
+            flags: ['en', 'es', 'it', 'fr', 'ol', 'zh'],
         }
     },
 
@@ -32,6 +32,9 @@ export default {
             .catch(function(error){
                 console.warn(error)
             });
+        },
+        getImagePath : function(imgPath){
+            return new URL (`../assets/img/${imgPath}.webp`, import.meta.url).href
         }
     },
 
@@ -59,7 +62,10 @@ export default {
                 </h5>
 
                 <p>
-                    Language: {{ movieElement.original_language }}
+                    Language: <img v-if="flags.includes(movieElement.original_language)" :src="getImagePath(movieElement.original_language)" alt="State">
+                    <span v-else class="languages">
+                        {{ movieElement.original_language }}
+                    </span>
                     <br>
                     rating:{{ movieElement.vote_average }} stars
                 </p>
@@ -72,5 +78,9 @@ export default {
 <style lang="scss">
     button{
         margin-left: 1rem;
+    }
+
+    img{
+        width: 12px;
     }
 </style>
