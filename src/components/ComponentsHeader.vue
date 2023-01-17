@@ -3,6 +3,7 @@
 import axios from 'axios';
 import { store } from '../store.js'
 
+
 export default {
     name: 'ComponentsHeader',
 
@@ -31,21 +32,6 @@ export default {
             .catch(function(error){
                 console.warn(error)
             });
-
-              //Chiamata per le serie tv
-            axios.get(this.apiSeriesUri, {
-                params: {
-                    api_key: this.personalKey,
-                    query: queryInput,
-                }
-            })
-                .then((response) => {
-                    this.store.series = (response.data.results);
-                    console.log(response.data.results)
-                })
-                .catch(function (error) {
-                    console.error(error);
-                });
         }
     },
 
@@ -65,7 +51,7 @@ export default {
         <ul>
             <li v-for="movieElement in store.movies">
                 <h3>
-                    {{ movieElement.title }}
+                    {{ movieElement.title }} 
                 </h3>
 
                 <h5>

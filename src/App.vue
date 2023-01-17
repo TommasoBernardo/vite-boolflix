@@ -3,11 +3,13 @@ import { store } from './store.js'
 import ComponentsHeader from './components/ComponentsHeader.vue'
 import ComponentsMain from './components/ComponentsMain.vue'
 
+
+
 export default{
   name: 'App.vue',
   components : {
     ComponentsHeader,
-    ComponentsMain
+    ComponentsMain,
   },
   data(){
     return{
